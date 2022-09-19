@@ -43,17 +43,17 @@ function showMatch(match) {
 }
 function matchesReport(matches) {
   let numMatch = 1
+  let numWeek = 1
   let numRound = 1
-  let numBout = 1
 
   for (let match of matches) {
     if (numMatch % 6 === 1) {
-      console.log(`\nTurno ${numBout}`)
-      numBout++
+      console.log(`\nRound ${numRound}`)
+      numRound++
     }
     if (numMatch % 2 === 1) {
-      console.log(`\nRodada ${numRound}`)
-      numRound++
+      console.log(`\nWeek ${numWeek}`)
+      numWeek++
     }
     showMatch(match)
     numMatch++
@@ -113,7 +113,7 @@ function final(first, second) {
       penaltyAway += createGoals(2)
     }
 
-    console.log('\nPênaltis')
+    console.log('\nPenalties')
     console.log(`${match.home.name}     ${penaltyHome}  x  ${penaltyAway}     ${match.away.name}`)
 
     if(penaltyHome > penaltyAway) {
@@ -128,7 +128,7 @@ function final(first, second) {
       champion = match.away
     }    
   }
-  console.log(`Campeão ${champion.name}`)
+  console.log(`Champion ${champion.name}`)
 }
 
 applyMatchesGoals(MATCHES)

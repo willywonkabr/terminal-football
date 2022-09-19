@@ -40,16 +40,16 @@ def showMatch(match):
     print(f"{match['home']['name']} {match['goalsHome']} X {match['goalsAway']} {match['away']['name']}")
 def matchesReport(matches):
     numMatch = 1
+    numWeek = 1
     numRound = 1
-    numBout = 1
 
     for match in matches:
         if (numMatch % 6) == 1:
-            print(f"\nTurno {numBout}")
-            numBout += 1
-        if (numMatch % 2) == 1:
-            print(f"\nRodada {numRound}")
+            print(f"\nRound {numRound}")
             numRound += 1
+        if (numMatch % 2) == 1:
+            print(f"\nWeek {numWeek}")
+            numWeek += 1
         showMatch(match)
         numMatch += 1
 def sumPoints(matches):
@@ -73,7 +73,14 @@ def sumPoints(matches):
 def standingTeams():
     teamsList = list(TEAMS.values()) 
     teamsList = sorted(teamsList, key = lambda team: (team['points'], team['goals_for'], team['goals_difference'], team['goals_against']), reverse = True)
-    print("\n",sorted(teamsList, key = lambda team: (team['points'], team['goals_for'], team['goals_difference'], team['goals_against']), reverse = True))
+    # print("\n",sorted(teamsList, key = lambda team: (team['points'], team['goals_for'], team['goals_difference'], team['goals_against']), reverse = True))
+    # Print the names of the columns.
+    print("{:<10} {:<10} {:<10} {:<10} {:<10}".format('name', 'points', 'goals_for', 'goals_difference', 'goals_against'))
+ 
+    # print each data item.
+    for key, value in teamsList:
+        name, points, goals_for, goals_difference, goals_against = value
+        print("{:<10} {:<10} {:<10} {:<10} {:<10}".format(name, points, goals_for, goals_difference, goals_against))
     return teamsList
 def final(first, second):
     match = {'home': first, 'goalsHome': 0, 'away': second, 'goalsAway': 0}
@@ -92,7 +99,7 @@ def final(first, second):
             penaltyHome += random.randint(0,2)
             penaltyAway += random.randint(0,2)
 
-        print("\nPênaltis")
+        print("\nPenalties")
         print(f"{match['home']['name']} {penaltyHome} x {penaltyAway} {match['away']['name']}")
 
         if penaltyHome > penaltyAway:
@@ -104,11 +111,11 @@ def final(first, second):
             champion = match['home']
         else:
             champion = match['away']
-    print(f"Campeão {champion['name']}")
+    print(f"Champion {champion['name']}")
 applyMatchesGoals(MATCHES)
 matchesReport(MATCHES)
 sumPoints(MATCHES)
-
 standing = standingTeams()
+
 first, second = standing[0], standing[1]
 final(first, second)
