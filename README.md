@@ -11,4 +11,5 @@ O problema era fazer as etapas de uma competição de futebol, fase de grupos. O
 
 Se você quiser saber como foi o processo de refazer o projeto em Python, acesse o artigo "Terminal football" no [Medium](https://medium.com/@oliveirajv/terminal-football-90dfa47e6b87)
 
-![programa-finalizado](https://user-images.githubusercontent.com/77807737/188753447-800dabb6-ffe2-4293-b4e7-4e12944fb1f2.png)
+
+![Finished program](https://user-images.githubusercontent.com/77807737/191144032-79ba062b-6445-419b-af80-f50eebb8b956.png)
