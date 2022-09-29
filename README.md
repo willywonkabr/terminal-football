@@ -1,5 +1,5 @@
 # terminal-football
-:us: The idea of this project was to solve a problem using other programming languages instead of the one initially used: JavaScript.
+:us: The idea of this project was to solve a problem using other programming languages instead of the one previously used: JavaScript.
 
 The problem was to make the stages of a football competition, group stage. The best in the group stage qualifies for the final. If there is a draw in the final, we go to penalties and then we have our champion.
 
