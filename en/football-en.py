@@ -1,121 +1,114 @@
-import random
+from random import randint
 TEAMS = {
-    'teamA': {'name': "Brazil",'points': 0,'goals_for': 0,'goals_difference': 0,'goals_against': 0,},
-    'teamB': {'name': "France",'points': 0,'goals_for': 0,'goals_difference': 0,'goals_against': 0,},
-    'teamC': {'name': "Israel",'points': 0,'goals_for': 0,'goals_difference': 0,'goals_against': 0,},
-    'teamD': {'name': "Angola",'points': 0,'goals_for': 0,'goals_difference': 0,'goals_against': 0,},
+    'team_a': {'name': "Brazil",'points': 0,'goals_for': 0,'goals_difference': 0,'goals_against': 0},
+    'team_b': {'name': "France",'points': 0,'goals_for': 0,'goals_difference': 0,'goals_against': 0},
+    'team_c': {'name': "Israel",'points': 0,'goals_for': 0,'goals_difference': 0,'goals_against': 0},
+    'team_d': {'name': "Angola",'points': 0,'goals_for': 0,'goals_difference': 0,'goals_against': 0},
 }
 
 MATCHES = [
 # Turno 1
     # Rodada 1
-    {'home': TEAMS['teamA'], 'goalsHome': 0, 'away': TEAMS['teamB'], 'goalsAway': 0},
-    {'home': TEAMS['teamC'], 'goalsHome': 0, 'away': TEAMS['teamD'], 'goalsAway': 0},
+    {'home': TEAMS['team_a'], 'goals_home': 0, 'away': TEAMS['team_b'], 'goals_away': 0},
+    {'home': TEAMS['team_c'], 'goals_home': 0, 'away': TEAMS['team_d'], 'goals_away': 0},
     # Rodada 2
-    {'home': TEAMS['teamA'], 'goalsHome': 0, 'away': TEAMS['teamC'], 'goalsAway': 0},
-    {'home': TEAMS['teamB'], 'goalsHome': 0, 'away': TEAMS['teamD'], 'goalsAway': 0},
+    {'home': TEAMS['team_a'], 'goals_home': 0, 'away': TEAMS['team_c'], 'goals_away': 0},
+    {'home': TEAMS['team_b'], 'goals_home': 0, 'away': TEAMS['team_d'], 'goals_away': 0},
     # Rodada 3
-    {'home': TEAMS['teamA'], 'goalsHome': 0, 'away': TEAMS['teamD'], 'goalsAway': 0},
-    {'home': TEAMS['teamC'], 'goalsHome': 0, 'away': TEAMS['teamB'], 'goalsAway': 0},
+    {'home': TEAMS['team_a'], 'goals_home': 0, 'away': TEAMS['team_d'], 'goals_away': 0},
+    {'home': TEAMS['team_c'], 'goals_home': 0, 'away': TEAMS['team_b'], 'goals_away': 0},
 # Turno 2
     # Rodada 4
-    {'home': TEAMS['teamA'], 'goalsHome': 0, 'away': TEAMS['teamB'], 'goalsAway': 0},
-    {'home': TEAMS['teamC'], 'goalsHome': 0, 'away': TEAMS['teamD'], 'goalsAway': 0},
+    {'home': TEAMS['team_a'], 'goals_home': 0, 'away': TEAMS['team_b'], 'goals_away': 0},
+    {'home': TEAMS['team_c'], 'goals_home': 0, 'away': TEAMS['team_d'], 'goals_away': 0},
     # Rodada 5
-    {'home': TEAMS['teamA'], 'goalsHome': 0, 'away': TEAMS['teamC'], 'goalsAway': 0},
-    {'home': TEAMS['teamB'], 'goalsHome': 0, 'away': TEAMS['teamD'], 'goalsAway': 0},
+    {'home': TEAMS['team_a'], 'goals_home': 0, 'away': TEAMS['team_c'], 'goals_away': 0},
+    {'home': TEAMS['team_b'], 'goals_home': 0, 'away': TEAMS['team_d'], 'goals_away': 0},
     # Rodada 6
-    {'home': TEAMS['teamA'], 'goalsHome': 0, 'away': TEAMS['teamD'], 'goalsAway': 0},
-    {'home': TEAMS['teamC'], 'goalsHome': 0, 'away': TEAMS['teamB'], 'goalsAway': 0},
+    {'home': TEAMS['team_a'], 'goals_home': 0, 'away': TEAMS['team_d'], 'goals_away': 0},
+    {'home': TEAMS['team_c'], 'goals_home': 0, 'away': TEAMS['team_b'], 'goals_away': 0},
 ]
-def createGoals():
-    return random.randint(0,3) 
-def matchScoreboard(match):
-    match['goalsHome'] = createGoals()
-    match['goalsAway'] = createGoals()
-def applyMatchesGoals(matches):
+def create_goals():
+    return randint(0,3) 
+def match_scoreboard(match):
+    match['goals_home'] = create_goals()
+    match['goals_away'] = create_goals()
+def apply_matches_goals(matches):
     for match in matches:
-        matchScoreboard(match)
-def showMatch(match):
-    print(f"{match['home']['name']} {match['goalsHome']} X {match['goalsAway']} {match['away']['name']}")
-def matchesReport(matches):
-    numMatch = 1
-    numWeek = 1
-    numRound = 1
+        match_scoreboard(match)
+def show_match(match):
+    print(f"{match['home']['name']} {match['goals_home']} X {match['goals_away']} {match['away']['name']}")
+def matches_report(matches):
+    num_match = 1
+    num_week = 1
+    num_round = 1
 
     for match in matches:
-        if (numMatch % 6) == 1:
-            print(f"\nRound {numRound}")
-            numRound += 1
-        if (numMatch % 2) == 1:
-            print(f"\nWeek {numWeek}")
-            numWeek += 1
-        showMatch(match)
-        numMatch += 1
-def sumPoints(matches):
+        if (num_match % 6) == 1:
+            print(f"\nRound {num_round}")
+            num_round += 1
+        if (num_match % 2) == 1:
+            print(f"\nWeek {num_week}")
+            num_week += 1
+        show_match(match)
+        num_match += 1
+def sum_points(matches):
     for match in matches:
-        if match['goalsHome'] > match['goalsAway']:
+        if match['goals_home'] > match['goals_away']:
             match['home']['points'] += 3
-        elif match['goalsHome'] < match['goalsAway']:
+        elif match['goals_home'] < match['goals_away']:
             match['away']['points'] += 3
         else:
             match['home']['points'] += 1
             match['away']['points'] += 1
 
-        match['home']['goals_for'] += match['goalsHome']
-        match['away']['goals_for'] += match['goalsAway']
+        match['home']['goals_for'] += match['goals_home']
+        match['away']['goals_for'] += match['goals_away']
 
-        match['home']['goals_difference'] += match['goalsHome'] - match['goalsAway']
-        match['away']['goals_difference'] += match['goalsAway'] - match['goalsHome']
+        match['home']['goals_difference'] += match['goals_home'] - match['goals_away']
+        match['away']['goals_difference'] += match['goals_away'] - match['goals_home']
 
-        match['home']['goals_against'] += match['goalsAway']
-        match['away']['goals_against'] += match['goalsHome']
-def standingTeams():
-    teamsList = list(TEAMS.values()) 
-    teamsList = sorted(teamsList, key = lambda team: (team['points'], team['goals_for'], team['goals_difference'], team['goals_against']), reverse = True)
-    # print("\n",sorted(teamsList, key = lambda team: (team['points'], team['goals_for'], team['goals_difference'], team['goals_against']), reverse = True))
-    # Print the names of the columns.
-    print("{:<10} {:<10} {:<10} {:<10} {:<10}".format('name', 'points', 'goals_for', 'goals_difference', 'goals_against'))
- 
-    # print each data item.
-    for key, value in teamsList:
-        name, points, goals_for, goals_difference, goals_against = value
-        print("{:<10} {:<10} {:<10} {:<10} {:<10}".format(name, points, goals_for, goals_difference, goals_against))
-    return teamsList
+        match['home']['goals_against'] += match['goals_away']
+        match['away']['goals_against'] += match['goals_home']
+def standing_teams():
+    teams_list = list(TEAMS.values()) 
+    teams_list = sorted(teams_list, key = lambda team: (team['points'], team['goals_for'], team['goals_difference'], team['goals_against']), reverse = True)
+    print("\n", sorted(teams_list, key = lambda team: (team['points'], team['goals_for'], team['goals_difference'], team['goals_against']), reverse = True))
+    return teams_list
 def final(first, second):
-    match = {'home': first, 'goalsHome': 0, 'away': second, 'goalsAway': 0}
+    match = {'home': first, 'goals_home': 0, 'away': second, 'goals_away': 0}
     
-    matchScoreboard(match)
+    match_scoreboard(match)
     print("\n")
-    showMatch(match)
+    show_match(match)
 
     champion = None
 
-    if match['goalsHome'] == match['goalsAway']:
-        penaltyHome = random.randint(0,5)
-        penaltyAway = random.randint(0,5)
+    if match['goals_home'] == match['goals_away']:
+        penalty_home = randint(0,5)
+        penalty_away = randint(0,5)
     
-        while penaltyHome == penaltyAway:
-            penaltyHome += random.randint(0,2)
-            penaltyAway += random.randint(0,2)
+        while penalty_home == penalty_away:
+            penalty_home += randint(0,2)
+            penalty_away += randint(0,2)
 
         print("\nPenalties")
-        print(f"{match['home']['name']} {penaltyHome} x {penaltyAway} {match['away']['name']}")
+        print(f"{match['home']['name']} {penalty_home} x {penalty_away} {match['away']['name']}")
 
-        if penaltyHome > penaltyAway:
+        if penalty_home > penalty_away:
             champion = match['home']
         else:
             champion = match['away']
     else:
-        if match['goalsHome'] > match['goalsAway']:
+        if match['goals_home'] > match['goals_away']:
             champion = match['home']
         else:
             champion = match['away']
     print(f"Champion {champion['name']}")
-applyMatchesGoals(MATCHES)
-matchesReport(MATCHES)
-sumPoints(MATCHES)
-standing = standingTeams()
+apply_matches_goals(MATCHES)
+matches_report(MATCHES)
+sum_points(MATCHES)
+standing = standing_teams()
 
 first, second = standing[0], standing[1]
 final(first, second)
